@@ -4,8 +4,8 @@ let des = document.getElementById('des')?.getContext('2d')
 const car = new Obj(0, 0, 600, 900, './img/menuGame.png')
 const f1 = new Car(300, 650, 100, 150, './img/carro3Direita.png')
 const c2 = new Carro2(100, -180, 90, 150, './img/carro2Esquerda.png', 8)
-const c3 = new Carro3(300, -180, 90, 150, './img/renan-removebg-preview.png')
-const c4 = new Carro4(500, -180, 90, 150, './img/mcLata-removebg-preview.png')
+const c3 = new Carro3(300, -180, 90, 150, './img/renan-removebg-preview.png', 6)
+const c4 = new Carro4(500, -180, 90, 150, './img/mcLata-removebg-preview.png', 7)
 
 let pitStop = new PitStop(600, -40, 100, 100, './img/pitStop.png')
 let zebra1 = new Estrada(560, 0, 55, 90, 'red')
@@ -71,12 +71,15 @@ function iniciarJogo() {
     gameOver = false
     f1.vida = 3
     f1.pontos = 0
-    f1.x = 100
+    f1.x = 300  
     f1.y = 650
     c2.recomeca()
     c3.recomeca()
     c4.recomeca()
     pitStop.recomeca()
+    pitStop.speed = 5  
+    phaseMessage = ''
+    phaseMessageTime = 0
     game = true
 }
 
@@ -291,25 +294,25 @@ function desenhar(){
         textFase.des_text('Gp da CHINA!', 120, 200, 'white',"35px Bankgothic md bt")
     }
     if(f1.pontos >= 20 && f1.pontos < 40) {
-        c2.speed * c2.speed * 1.5
-        c3.speed * c2.speed * 1.5
-        c4.speed * c2.speed * 1.5
+        c2.speed = 10
+        c3.speed = 11
+        c4.speed = 8
     }
     if(f1.pontos == 40) {
         textFase.des_text('Gp de MÔNACO!', 120, 200, 'white',"35px Bankgothic md bt")
     }
     if(f1.pontos >= 40 && f1.pontos < 60) {
-        c2.speed * c2.speed * 2
-        c3.speed * c2.speed * 2 
-        c4.speed * c2.speed * 2 
+        c2.speed = 11
+        c3.speed = 13
+        c4.speed = 9
     }
     if(f1.pontos == 60) {
         textFase.des_text('Gp de INTERLAGOS!', 120, 200, 'white',"35px Bankgothic md bt")
     }
     if(f1.pontos >= 60 && f1.pontos < 80) {
-        c2.speed * c2.speed * 3
-        c3.speed * c2.speed * 3 
-        c4.speed = c2.speed * 3
+        c2.speed = 12
+        c3.speed = 14 
+        c4.speed = 12
     }
 
     pitStop.draw();
@@ -354,7 +357,7 @@ function desenharGameOver() {
     
     des.fillStyle = 'white';
     des.font = '20px Arial';
-    des.fillText('Pressione G para recomeçar ou P para voltar ao menu!', 300, 500);
+    des.fillText('Pressione F5 para recomeçar ou P para voltar ao menu!', 300, 500);
 }
 
 function main(){
