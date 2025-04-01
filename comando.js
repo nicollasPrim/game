@@ -54,19 +54,13 @@ class Car extends Obj{
     pitStopDuracao = 3000
 }
 
-class PitStop extends Car{
-    activate = true
+class PitStop extends Obj {
     move() {
-        this.y += speed
-        if (this.y >= 2000) {
-            this.recomeca()
-        }
+        this.y += this.speed;
     }
-
     recomeca() {
-        this.y = -1000;
-        this.x = Math.random() * (600 - this.w);
-        this.active = true; 
+        this.y = -1300;
+        this.x = Math.random() * 500;
     }
 }
 

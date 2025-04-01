@@ -7,7 +7,7 @@ const c2 = new Carro2(100, -180, 90, 150, './img/carro2Esquerda.png', 8)
 const c3 = new Carro3(300, -180, 90, 150, './img/renan-removebg-preview.png', 6)
 const c4 = new Carro4(500, -180, 90, 150, './img/mcLata-removebg-preview.png', 7)
 
-let pitStop = new PitStop(600, -40, 100, 100, './img/pitStop.png')
+let pitStop = new PitStop(300, -1300, 80, 80, './img/pitStop.png')
 let zebra1 = new Estrada(560, 0, 55, 90, 'red')
 let zebra2 = new Estrada(560, 90, 50, 90, 'white')
 let zebra3 = new Estrada(560, 180, 55, 90, 'red')
@@ -285,6 +285,7 @@ function desenhar(){
     c2.draw();
     c3.draw();
     c4.draw();
+    pitStop.draw();
 
     let corrida = document.getElementById('corrida')
     let circuito = document.getElementById('circuito')
@@ -301,7 +302,7 @@ function desenhar(){
         cidade.innerHTML = `Melbourne`
         tamanho.innerHTML = `5,278 Km`
     }
-    }
+
     if(f1.pontos >= 20 && f1.pontos < 40) {
         gp.innerHTML = 'GP da China!'
         corrida.innerHTML = '2'
@@ -335,8 +336,6 @@ function desenhar(){
         c3.speed = 24 
         c4.speed = 22
     }
-
-    pitStop.draw();
     
     des.fillStyle = 'white';
     des.font = '20px Bankgothic md bt';
@@ -364,6 +363,7 @@ function desenhar(){
         des.fillText(phaseMessage, 300, 450);
         phaseMessageTime -= 16;
     }
+}
 
 
 function desenharInicio(){
