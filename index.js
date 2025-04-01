@@ -30,6 +30,7 @@ let zebra8e = new Estrada(0, 630, 50, 90, 'white')
 let zebra9e = new Estrada(0, 720, 50, 90, 'red')
 let zebra10e = new Estrada(0, 810, 50, 90, 'white')
 let zebra11e = new Estrada(0, 900, 50, 90, 'red')
+let fase = document.getElementById('fase')
 
 let textFase = new Text()
 
@@ -43,22 +44,25 @@ let game = true
 
 let sair = document.getElementById('sair')
 
-//let menuSong = new Audio('./assets/gaem oveh.wav')
-//let gameSong = new Audio('./assets/gaem oveh.wav')
-//let batida = new Audio('./assets/rocketlaucnher.mp3')
-//let pointSound = new Audio('./assets/rocketlaucnher.mp3')
+let menuSong = new Audio('./assets/gaem oveh.wav')
+let gameSong = new Audio('./assets/gaem oveh.wav')
+let motor = new Audio('./assets/motor.wav')
 
-let fase = 1
+motor.volume = 0.8
+motor.loop = true
+
 let phaseMessage = ''
 let phaseMessageTime = 0
 
 let gameOver = false
 
-//menuSong.volume = 1
-//gameSong.volume = 1
-//menuSong.loop = true
-//gameSong.loop = true
-//batida.volume = 0.3
+let fase1 = `GP da Austrália! `
+let fase2 = 'GP da China! '
+let fase3 = 'GP de Mônaco! '
+let fase4 = 'GP de São Paulo! '
+
+menuSong.loop = true
+gameSong.loop = true
 
 function reiniciarJogo() {
     iniciarJogo()
@@ -180,6 +184,7 @@ function pontos(){
 
 
 function atualizar(){
+    motor.play()
     zebra1.mov_est()
     zebra2.mov_est()
     zebra3.mov_est()
@@ -281,32 +286,54 @@ function desenhar(){
     c3.draw();
     c4.draw();
 
-    if(f1.pontos == 0) {
-        textFase.des_text('Gp da AUSTRALIA!', 120, 200, 'white',"35px Bankgothic md bt", )
+    let corrida = document.getElementById('corrida')
+    let circuito = document.getElementById('circuito')
+    let pais = document.getElementById('pais')
+    let cidade = document.getElementById('cidade') 
+    let tamanho = document.getElementById('tamanho') 
+    let gp = document.getElementById('gp')
+
+    if(f1.pontos < 20) {
+        gp.innerHTML = 'GP da Australia'
+        corrida.innerHTML = '1'
+        circuito.innerHTML = `Albert Park`
+        pais.innerHTML = `Australia`
+        cidade.innerHTML = `Melbourne`
+        tamanho.innerHTML = `5,278 Km`
     }
-    if(f1.pontos == 20) {
-        textFase.des_text('Gp da CHINA!', 120, 200, 'white',"35px Bankgothic md bt")
     }
     if(f1.pontos >= 20 && f1.pontos < 40) {
-        c2.speed = 10
-        c3.speed = 11
-        c4.speed = 8
-    }
-    if(f1.pontos == 40) {
-        textFase.des_text('Gp de MÔNACO!', 120, 200, 'white',"35px Bankgothic md bt")
+        gp.innerHTML = 'GP da China!'
+        corrida.innerHTML = '2'
+        circuito.innerHTML = `Internacional de Xangai`
+        pais.innerHTML = `Chima`
+        cidade.innerHTML = `Xangai`
+        tamanho.innerHTML = `5,451 Km`
+        c2.speed = 13
+        c3.speed = 16
+        c4.speed = 12
     }
     if(f1.pontos >= 40 && f1.pontos < 60) {
-        c2.speed = 11
-        c3.speed = 13
-        c4.speed = 9
-    }
-    if(f1.pontos == 60) {
-        textFase.des_text('Gp de INTERLAGOS!', 120, 200, 'white',"35px Bankgothic md bt")
+        gp.innerHTML = 'GP de Mônaco!'
+        corrida.innerHTML = '3'
+        circuito.innerHTML = `*CIRCUITO DE RUA*`
+        pais.innerHTML = `Mõnaco`
+        cidade.innerHTML = `Mônaco`
+        tamanho.innerHTML = `3,337 Km`
+        c2.speed = 17
+        c3.speed = 19
+        c4.speed = 16
     }
     if(f1.pontos >= 60 && f1.pontos < 80) {
-        c2.speed = 12
-        c3.speed = 14 
-        c4.speed = 12
+        gp.innerHTML = 'GP de São Paulo!'
+        corrida.innerHTML = '4'
+        circuito.innerHTML = `Interlagos`
+        pais.innerHTML = `Brasil`
+        cidade.innerHTML = `São Paulo`
+        tamanho.innerHTML = `4,309 Km`
+        c2.speed = 20
+        c3.speed = 24 
+        c4.speed = 22
     }
 
     pitStop.draw();
@@ -337,7 +364,7 @@ function desenhar(){
         des.fillText(phaseMessage, 300, 450);
         phaseMessageTime -= 16;
     }
-}
+
 
 function desenharInicio(){
     car.draw()

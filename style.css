@@ -93,3 +93,43 @@ body {
     border-radius: 10px;
     background-image: url('./img/menuGame.png');
 }
+
+#menu {
+    background-color: white;
+    border: 6px solid black;
+    border-radius: 30px;
+    position: absolute;
+    left: 350px;
+    top: 470px;
+    right: 0;
+    bottom: 0;
+    width: 500px;
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: 'comic sans ms';
+    font-size: 25px;
+}
+
+#menu div{
+    display: flex;
+    /* flex-direction: row; */
+}
+
+span {
+    margin: 0 10px;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+
+#gp{
+    font-weight: bold;
+    font-size: 50px;
+}
+
+#corrida{
+    
+}
